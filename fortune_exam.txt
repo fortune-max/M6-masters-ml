@@ -1,0 +1,50 @@
+0. Supervised learning problem statement. Regression and classification problems. What’s the difference?
+In supervised learning we have a dataset with input features and corresponding output labels.
+We wish to train a model to predict an output label given an input feature while minimizing the error between the predicted and true output labels (loss function).
+In a regression problem, the output labels are continuous values.
+In a classification problem, the output labels are discrete values.
+
+1. Linear model for regression problem in matrix notation. Mean Squared Error loss function.
+The linear model for regression problem in matrix notation is given by:
+y_hat = Xw + b
+where y_hat is the predicted value, X is the input matrix, w is the weight matrix and b is the bias.
+
+The Mean Squared Error loss function is given by:
+MSE = (1/n) * sum((y_hat - y)^2)
+where y is the true value.
+
+3. Write down gradient descent step for linear model and MSE for one-dimensional case.
+dMSE/dw = (2/n) * sum((y_hat - y) * X)
+w(t+1) = w(t) - alpha * dMSE/dw   (alpha is the learning rate)
+
+5. What is regularization? How does L1 regularization differ from L2?
+Regularization is a technique used when training models to prevent overfitting by adding a penalty term to the loss function which is a function of the model parameters (weights).
+L1 regularization is the sum of the absolute values of the model parameters.
+L2 regularization is the sum of the squares of the model parameters.
+L1 can help in feature selection as it can zero some parameters. It is also less sensitive to outliers.
+
+7. How does the bagging work? What is Random Forest? What’s the difference between Random forest and Bagging?
+Bagging means Bootstrap Aggregation. In bootstrapping, we create a new dataset for our model to be trained on by picking samples from the data with replacement.
+Bootstrap Aggregation entails creating several bootstrapped models and aggregating their predictions to make a final prediction using the ensemble.
+In Random Forest, we use bootstrap aggregation as well as RSM (Random Subspace Method).
+RSM is where we use a random subset of features out of our total features in training the decision trees in our Random Forest ensemble.
+Random Forest differs from Bagging in that we use all the features in Bagging to train our ensemble, whereas we select some random features each time to train our ensemble in Random Forest.
+This allows Random Forest to better generalize although it can be affected by multicollinearity.
+
+9. What is boosting. Gradient boosting? How should a model be trained on step t + 1 in a gradient boosting ensemble?
+Boosting is a technique to improve the performance of a simple model (weak learners) by training each subsequent model to correct the errors of the previous model.
+In gradient boosting, we use gradient descent to minimize our loss function when choosing parameters for the current step model.
+
+
+11. How does convolutional layer work? What are the kernels (filters) in the covolutional layer? Are they independent?
+The Convolutional layer works by performing convolution operations on the input using kernels/filters to produce an output.
+Filters are smaller matrices with dimensions smaller or equal to the input matrix that are used to perform the convolution operation.
+The filters over the course of training will learn to detect different features in the input.
+The first set of filters will learn simple features like edges and corners, and subsequent filter layers learn more complex features.
+Filters are not necessarily independent as they may learn to detect overlapping features in the input.
+
+13. What is batch normalization? How does it work? How does it affect the learning rate? Does it change its behaviour on the inference (test) stage?
+Batch normalization is a technique used to make the training of deep neural networks faster and more stable.
+It works by normalizing each layer's input using the mean and variance of the batch.
+As the training is now more stable, a higher learning rate can be used.
+During inference, we use the running mean and variance computed during training to normalize the input.
